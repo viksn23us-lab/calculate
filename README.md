@@ -12,7 +12,11 @@ After this repository is pushed to GitHub, Pages can serve the app at:
 
 `https://viksn23us-lab.github.io/calculate/`
 
-The repository includes a GitHub Actions workflow that publishes the static files from `main`.
+In the repository settings, choose:
+
+- Source: `Deploy from a branch`
+- Branch: `main`
+- Folder: `/root`
 
 ## Test
 
