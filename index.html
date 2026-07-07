@@ -1,43 +1,49 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Калькулятор</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Calculator">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+    <title>Calculator</title>
+    <link rel="manifest" href="site.webmanifest">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <main class="app" aria-label="Калькулятор">
-      <section class="calculator">
+    <main class="app" aria-label="Calculator">
+      <section class="calculator" aria-label="Calculator app">
         <div class="display" aria-live="polite">
           <div class="expression" id="expression">&nbsp;</div>
           <output class="result" id="result">0</output>
         </div>
 
-        <div class="keys" role="group" aria-label="Кнопки калькулятора">
+        <div class="keys" role="group" aria-label="Calculator keys">
           <button class="key key-muted" type="button" data-action="clear">AC</button>
           <button class="key key-muted" type="button" data-action="toggle-sign">+/-</button>
           <button class="key key-muted" type="button" data-action="percent">%</button>
-          <button class="key key-op" type="button" data-operator="/">/</button>
+          <button class="key key-op" type="button" data-operator="/" aria-label="Divide">/</button>
 
           <button class="key" type="button" data-number="7">7</button>
           <button class="key" type="button" data-number="8">8</button>
           <button class="key" type="button" data-number="9">9</button>
-          <button class="key key-op" type="button" data-operator="*">x</button>
+          <button class="key key-op" type="button" data-operator="*" aria-label="Multiply">x</button>
 
           <button class="key" type="button" data-number="4">4</button>
           <button class="key" type="button" data-number="5">5</button>
           <button class="key" type="button" data-number="6">6</button>
-          <button class="key key-op" type="button" data-operator="-">-</button>
+          <button class="key key-op" type="button" data-operator="-" aria-label="Subtract">-</button>
 
           <button class="key" type="button" data-number="1">1</button>
           <button class="key" type="button" data-number="2">2</button>
           <button class="key" type="button" data-number="3">3</button>
-          <button class="key key-op" type="button" data-operator="+">+</button>
+          <button class="key key-op" type="button" data-operator="+" aria-label="Add">+</button>
 
           <button class="key key-wide" type="button" data-number="0">0</button>
-          <button class="key" type="button" data-action="decimal">.</button>
-          <button class="key key-equals" type="button" data-action="equals">=</button>
+          <button class="key" type="button" data-action="decimal" aria-label="Decimal">.</button>
+          <button class="key key-op" type="button" data-action="equals" aria-label="Equals">=</button>
         </div>
       </section>
     </main>

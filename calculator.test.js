@@ -58,7 +58,7 @@ press({ number: "8" });
 press({ operator: "/" });
 press({ number: "0" });
 press({ action: "equals" });
-expectResult("Ошибка", "division by zero");
+expectResult("Error", "division by zero");
 
 press({ action: "clear" });
 press({ number: "1" });

@@ -20,7 +20,7 @@ const operatorLabels = {
 
 function formatNumber(value) {
   if (!Number.isFinite(value)) {
-    return "Ошибка";
+    return "Error";
   }
 
   const rounded = Number.parseFloat(value.toPrecision(12));
@@ -80,6 +80,17 @@ function inputDecimal() {
   }
 }
 
+function deleteLastDigit() {
+  if (state.hasError || state.waitingForSecondOperand) {
+    resetCalculator();
+    return;
+  }
+
+  state.displayValue = state.displayValue.length > 1
+    ? state.displayValue.slice(0, -1)
+    : "0";
+}
+
 function calculate(first, second, operator) {
   switch (operator) {
     case "+":
@@ -114,7 +125,7 @@ function handleOperator(nextOperator) {
     const result = calculate(state.firstOperand, inputValue, state.operator);
 
     if (!Number.isFinite(result)) {
-      state.displayValue = "Ошибка";
+      state.displayValue = "Error";
       state.firstOperand = null;
       state.operator = null;
       state.waitingForSecondOperand = true;
@@ -143,7 +154,7 @@ function performEquals() {
   state.lastExpression = `${formatNumber(state.firstOperand)} ${operatorLabels[state.operator]} ${formatNumber(secondOperand)} =`;
 
   if (!Number.isFinite(result)) {
-    state.displayValue = "Ошибка";
+    state.displayValue = "Error";
     state.hasError = true;
   } else {
     state.displayValue = String(result);
@@ -180,7 +191,7 @@ function updateExpression() {
 
 function updateDisplay() {
   expressionElement.textContent = state.lastExpression || "\u00a0";
-  resultElement.textContent = state.hasError ? "Ошибка" : formatDisplayValue(state.displayValue);
+  resultElement.textContent = state.hasError ? "Error" : formatDisplayValue(state.displayValue);
 }
 
 function flashKey(button) {
@@ -201,6 +212,7 @@ function handleButtonClick(button) {
     if (action === "equals") performEquals();
     if (action === "toggle-sign") toggleSign();
     if (action === "percent") applyPercent();
+    if (action === "delete") deleteLastDigit();
   }
 
   flashKey(button);
@@ -214,11 +226,17 @@ keysElement.addEventListener("click", (event) => {
 });
 
 window.addEventListener("keydown", (event) => {
+  if (event.key === "Backspace") {
+    event.preventDefault();
+    deleteLastDigit();
+    updateDisplay();
+    return;
+  }
+
   const keyMap = {
     Enter: "[data-action='equals']",
     "=": "[data-action='equals']",
     Escape: "[data-action='clear']",
-    Backspace: "[data-action='clear']",
     ".": "[data-action='decimal']",
     ",": "[data-action='decimal']",
     "+": "[data-operator='+']",
