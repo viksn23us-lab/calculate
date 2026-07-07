@@ -22,6 +22,11 @@ const context = {
       callback();
     },
   },
+  navigator: {
+    serviceWorker: {
+      register() {},
+    },
+  },
   console,
 };
 
