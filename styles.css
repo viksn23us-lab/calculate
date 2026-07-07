@@ -1,0 +1,161 @@
+:root {
+  color-scheme: light;
+  --page: #eef2f6;
+  --panel: #ffffff;
+  --display: #172033;
+  --text: #111827;
+  --subtle: #7c8797;
+  --key: #f4f6f8;
+  --key-hover: #e8edf2;
+  --muted: #dfe5ec;
+  --op: #235789;
+  --op-hover: #1d4a73;
+  --equals: #e05a47;
+  --equals-hover: #c94e3e;
+  --shadow: 0 22px 60px rgba(25, 35, 54, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+  background:
+    radial-gradient(circle at 20% 15%, rgba(35, 87, 137, 0.16), transparent 30%),
+    linear-gradient(135deg, #eef2f6 0%, #f7f1e8 100%);
+  color: var(--text);
+}
+
+button {
+  font: inherit;
+}
+
+.app {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.calculator {
+  width: min(100%, 390px);
+  padding: 18px;
+  border: 1px solid rgba(23, 32, 51, 0.08);
+  border-radius: 8px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.display {
+  min-height: 138px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  gap: 10px;
+  margin-bottom: 16px;
+  padding: 22px;
+  border-radius: 8px;
+  background: var(--display);
+  color: #ffffff;
+  overflow: hidden;
+}
+
+.expression,
+.result {
+  display: block;
+  width: 100%;
+  text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.expression {
+  min-height: 24px;
+  color: #b8c2d0;
+  font-size: 1rem;
+}
+
+.result {
+  font-size: clamp(2.2rem, 12vw, 3.6rem);
+  line-height: 1;
+  font-weight: 700;
+}
+
+.keys {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.key {
+  width: 100%;
+  min-height: 64px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--key);
+  color: var(--text);
+  font-size: 1.35rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 120ms ease, background 120ms ease, box-shadow 120ms ease;
+}
+
+.key:hover {
+  background: var(--key-hover);
+}
+
+.key:active,
+.key.is-active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.key:focus-visible {
+  outline: 3px solid rgba(224, 90, 71, 0.38);
+  outline-offset: 2px;
+}
+
+.key-muted {
+  background: var(--muted);
+  color: #293445;
+}
+
+.key-op {
+  background: var(--op);
+  color: #ffffff;
+}
+
+.key-op:hover {
+  background: var(--op-hover);
+}
+
+.key-equals {
+  background: var(--equals);
+  color: #ffffff;
+}
+
+.key-equals:hover {
+  background: var(--equals-hover);
+}
+
+.key-wide {
+  grid-column: span 2;
+}
+
+@media (max-width: 420px) {
+  .app {
+    padding: 12px;
+  }
+
+  .calculator {
+    padding: 12px;
+  }
+
+  .key {
+    min-height: 58px;
+    font-size: 1.2rem;
+  }
+}
